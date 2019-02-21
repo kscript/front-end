@@ -1,5 +1,7 @@
 
 module.exports = {
+  publicPath: './',
+  outputDir: 'docs',
   productionSourceMap: false,
   lintOnSave: false,
   devServer: {

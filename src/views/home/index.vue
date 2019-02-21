@@ -78,7 +78,7 @@ export default {
               group: [
                 {
                   to: {
-                    path: '/'
+                    path: '/markdown#t1'
                   },
                   label: '使用说明'
                 }
@@ -128,7 +128,7 @@ export default {
       this.list.forEach((vo, i1) => {
         !active && (vo.children || []).forEach((v2, i2) => {
           !active && (v2.group || []).forEach((v3, i3) => {
-            if (!active && v3.to.path === path) {
+            if (!active && v3.to.path.split('#')[0] === path) {
               active = [i1, i2, i3].join('-')
             }
           })

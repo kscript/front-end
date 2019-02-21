@@ -15,6 +15,11 @@ const router = new Router({
           path: '/sprite',
           name: 'sprite',
           component: r => require.ensure( [], () => r (require('./components/pages/sprite.vue'))),
+        },
+        {
+          path: '/markdown',
+          name: 'markdown',
+          component: r => require.ensure( [], () => r (require('./components/pages/markdown.vue'))),
         }
       ]
     }

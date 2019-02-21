@@ -5,7 +5,10 @@
 </template>
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  mounted () {
+    window.app = this
+  }
 }
 </script>
 <style>

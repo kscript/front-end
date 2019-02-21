@@ -20,8 +20,10 @@
     "element-ui": "^2.5.4",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "github-markdown-css": "^3.0.1",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
+    "vue-markdown": "^2.2.4",
     "vue-template-compiler": "^2.5.21"
   }
 }

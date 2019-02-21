@@ -1,0 +1,17 @@
+.scroll::-webkit-scrollbar {
+	width: $scrollW;
+	background-color: transparent;
+}
+.scroll::-webkit-scrollbar-thumb {
+	background-color: $scrollC;
+	border-radius: $scrollW;
+}
+
+.scroll::-moz-scrollbar {
+	width: $scrollW;
+	background-color: transparent;
+}
+.scroll::-moz-scrollbar-thumb {
+	background-color: $scrollC;
+	border-radius: $scrollW;
+}

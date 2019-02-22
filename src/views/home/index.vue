@@ -67,54 +67,14 @@ export default {
     return {
       asideW: 240,
       isCollapse: false,
-      defaultActive: '0-0-0',
-      list: [
-        {
-          label: '开始',
-          icon: 'el-icon-star-off',
-          children: [
-            {
-              label: '',
-              group: [
-                {
-                  to: {
-                    path: '/markdown#t1'
-                  },
-                  label: '使用说明'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          label: 'CSS',
-          icon: 'el-icon-picture-outline',
-          children: [
-            {
-              label: '工具',
-              group: [
-                {
-                  to: {
-                    path: '/sprite'
-                  },
-                  icon: 'el-icon-setting',
-                  label: '精灵图片生成器'
-                },
-                {
-                  to: {
-                    path: '/sprite'
-                  },
-                  icon: 'el-icon-more-outline',
-                  label: '精灵图片生成器'
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      defaultActive: '0',
+      list: []
     }
   },
   methods: {
+    getList () {
+      return this.$store.dispatch('toolList')
+    },
     selectMenu (index, indexPath, { route }) {
       if (route !== '') {
         this.$router.push({
@@ -138,7 +98,10 @@ export default {
     }
   },
   mounted () {
-    this.defaultActive = this.getActive()
+    this.getList().then(data => {
+      this.list = data.route
+      this.defaultActive = this.getActive() || '0'
+    })
   }
 }
 </script>

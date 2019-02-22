@@ -2,12 +2,16 @@
   <div class="page-markdown">
     <v-vuemarkdown
      class="md-editor-preview markdown-body"
-     ref="markdown" :source="content">
+     ref="markdown"
+     :source="content"
+     @rendered="rendered">
     </v-vuemarkdown>
   </div>
 </template>
 <script>
 import 'github-markdown-css'
+import 'prismjs'
+import 'prismjs/themes/prism.css';
 import VueMarkdown from 'vue-markdown'
 
 export default {
@@ -21,10 +25,15 @@ export default {
   },
   methods: {
     parseHash () {
-      let hash = this.$route.hash
-      if (hash === '#t1') {
-        
-      }
+      let hash = this.$route.hash.slice(1)
+      this.$store.dispatch('server', hash).then(data => {
+        this.content = data
+      })
+    },
+    rendered () {
+      this.$nextTick(()=>{
+        Prism.highlightAll()
+      })
     }
   },
   mounted () {
@@ -32,6 +41,7 @@ export default {
     this.$bus.$off('markdownContent').$on('markdownContent', content => {
       this.content = content
     })
+    Prism.highlightAll()
   }
 }
 </script>

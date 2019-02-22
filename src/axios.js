@@ -23,9 +23,9 @@ $axios.interceptors.response.use(function (response) {
 }, function (error) {
   return Promise.reject(error)
 })
-
-export default {
+export const service = {
   install () {
     Vue.prototype.$axios = $axios
   }
 }
+export default $axios

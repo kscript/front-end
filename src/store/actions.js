@@ -1,5 +1,23 @@
+import axios from '../axios'
 export default {
-  server(context, val){
-    context.commit('server', val);
+  toolList({
+    state
+  }){
+    return axios({
+      url: '/api/server.json',
+      method: 'get'
+    }).then(response => {
+      return response.data
+    })
+  },
+  server({
+    state
+  }, hash){
+    return axios({
+      url: '/md/' + hash + '.md',
+      method: 'get'
+    }).then(response => {
+      return response.data
+    })
   }
 }

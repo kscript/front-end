@@ -1,0 +1,39 @@
+{
+  "route": [
+    {
+      "label": "开始",
+      "icon": "el-icon-star-off",
+      "children": [
+        {
+          "label": "",
+          "group": [
+            {
+              "to": {
+                "path": "/markdown#start"
+              },
+              "label": "使用说明"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "CSS",
+      "icon": "el-icon-picture-outline",
+      "children": [
+        {
+          "label": "工具",
+          "group": [
+            {
+              "to": {
+                "path": "/sprite"
+              },
+              "icon": "el-icon-setting",
+              "label": "精灵图片生成器"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import axios from 'axios'
 import qs from 'qs'
 
 let $axios = axios.create({
-  baseURL: '/',
+  baseURL: process.env.NODE_ENV === 'development' ? '/': '/front-tools',
   timeout: 15000,
   transformRequest: [function (data) {
     return data instanceof FormData ? data : qs.stringify(data)

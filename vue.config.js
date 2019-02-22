@@ -1,6 +1,6 @@
 
 module.exports = {
-  publicPath: './',
+  publicPath: '/front-tools',
   outputDir: 'docs',
   productionSourceMap: false,
   lintOnSave: false,

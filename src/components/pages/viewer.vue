@@ -23,6 +23,11 @@ export default {
   components: {
     'v-vuemarkdown': VueMarkdown
   },
+  watch:{
+    $route(){
+      this.parseHash()
+    }
+  },
   methods: {
     parseHash () {
       let hash = this.$route.hash.slice(1)

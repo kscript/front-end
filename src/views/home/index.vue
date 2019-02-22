@@ -2,10 +2,6 @@
   <div class="view-home">
     <el-container>
     <el-aside class="scroll" :width="asideW + 'px'">
-      <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-        <el-radio-button :label="false">展开</el-radio-button>
-        <el-radio-button :label="true">收起</el-radio-button>
-      </el-radio-group> -->
       <el-menu
        class="el-menu-vertical-demo"
        text-color="#fff"
@@ -84,11 +80,13 @@ export default {
     },
     getActive () {
       let path = this.$route.path
+      let hash = this.$route.hash.slice(1)
       let active
       this.list.forEach((vo, i1) => {
         !active && (vo.children || []).forEach((v2, i2) => {
           !active && (v2.group || []).forEach((v3, i3) => {
-            if (!active && v3.to.path.split('#')[0] === path) {
+            let info = v3.to.path.split('#')
+            if (!active && info[0] === path && (!info[1] || info[1] === hash)) {
               active = [i1, i2, i3].join('-')
             }
           })

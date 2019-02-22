@@ -9,7 +9,7 @@
           "group": [
             {
               "to": {
-                "path": "/markdown#start"
+                "path": "/viewer#start"
               },
               "label": "使用说明"
             }
@@ -19,7 +19,7 @@
     },
     {
       "label": "CSS",
-      "icon": "el-icon-picture-outline",
+      "icon": "el-icon-news",
       "children": [
         {
           "label": "工具",
@@ -28,8 +28,24 @@
               "to": {
                 "path": "/sprite"
               },
-              "icon": "el-icon-setting",
               "label": "精灵图片生成器"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "JS",
+      "icon": "el-icon-tickets",
+      "children": [
+        {
+          "label": "工具",
+          "group": [
+            {
+              "to": {
+                "path": "/viewer#file-loader"
+              },
+              "label": "文件加载器"
             }
           ]
         }

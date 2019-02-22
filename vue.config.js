@@ -6,12 +6,12 @@ module.exports = {
   lintOnSave: false,
   devServer: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000/',
+      '/md': {
+        target: 'http://localhost:8080',
         ws: true,
         changeOrigin: true,
         pathRewrite: {
-          '/api': ''
+          '/md': '/md-server'
         }
       }
     }

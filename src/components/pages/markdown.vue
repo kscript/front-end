@@ -23,12 +23,7 @@ export default {
     parseHash () {
       let hash = this.$route.hash
       if (hash === '#t1') {
-        this.content = `
-          # 这是一个测试
-          \`\`\` js
-            var a = 'test'
-          \`\`\`
-        `.replace(/\s{10}/g, '\n')
+        
       }
     }
   },

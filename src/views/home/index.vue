@@ -2,11 +2,13 @@
   <div class="view-home">
     <el-container>
     <el-aside class="scroll" :width="asideW + 'px'">
+      <div class="scroll">
       <el-menu
        class="el-menu-vertical-demo"
-       text-color="#fff"
-       background-color="#545c64"
-       active-text-color="#ffd04b"
+       text-color="#555"
+       text-color2="#fff"
+       background-color2="#545c64"
+       active-text-color2="#ffd04b"
        @select="selectMenu"
        :collapse="isCollapse"
        :collapse-transition="false"
@@ -50,6 +52,7 @@
         </el-menu-item>
         </template>
       </el-menu>
+      </div>
     </el-aside>
     <el-main>
       <router-view/>
@@ -112,22 +115,20 @@ export default {
   left: 0;
 }
 .el-aside{
-  // position: fixed;
-  // top: 0;
-  // bottom: 0;
-  // left: 0;
-  // width: auto!important;
-  // min-width: 200px;
-  background: #545c64;
-}
-.el-menu{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  border-right: none;
-  /deep/ .el-menu-item-group__title{
-    display: none;
+  .scroll{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #e6e6e6;
+    .el-menu{
+      border-right: none;
+      /deep/ .el-menu-item-group__title{
+        display: none;
+      }
+    }
   }
 }
 </style>

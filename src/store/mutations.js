@@ -1,5 +1,7 @@
 export default {
-  server (state, val) {
-    state.server = val
+  server (state, {
+    hash, data
+  }) {
+    state.server[hash] = data
   }
 }

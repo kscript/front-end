@@ -11,13 +11,23 @@ export default {
     })
   },
   server({
-    state
+    state,
+    commit
   }, hash){
+    if (state.server[hash]) {
+      return new Promise(resolve => {
+        resolve(state.server[hash])
+      })
+    }
     return axios({
       url: '/md/' + hash + '.md',
       method: 'get'
-    }).then(response => {
-      return response.data
+    }).then(({ data }) => {
+      commit('server', {
+        hash,
+        data 
+      })
+      return data
     })
   }
 }

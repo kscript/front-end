@@ -1,4 +1,4 @@
 module.exports = {
-  outputDir: 'docs/front-tools',
+  outputDir: 'docs',
   publicPath: '/front-tools'
 }

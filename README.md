@@ -1,13 +1,13 @@
-## front-tools
-一个存放前端工具集的静态网站 [在线demo](https://kscript.github.io/front-tools/)  
+## front-end
+[一个有关于前端的静态网站](https://kscript.github.io/front-end/)  
 
 ### 安装及使用
 ```
   // clone 项目到本地
-  git clone https://github.com/kscript/front-tools.git
+  git clone https://github.com/kscript/front-end.git
 
   // 打开项目所在目录
-  cd front-tools
+  cd front-end
 
   // 安装项目依赖
   npm i

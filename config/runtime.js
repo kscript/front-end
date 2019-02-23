@@ -5,6 +5,6 @@ export default {
     publicPath: '/'
   },
   production: {
-    publicPath: '/front-tools'
+    publicPath: '/front-end'
   }
 }[process.env.NODE_ENV]

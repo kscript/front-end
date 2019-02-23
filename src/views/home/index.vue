@@ -76,6 +76,11 @@ export default {
       list: []
     }
   },
+  watch:{
+    $route(){
+      this.defaultActive = this.getActive()
+    }
+  },
   methods: {
     getList () {
       return this.$store.dispatch('toolList')

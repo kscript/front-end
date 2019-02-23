@@ -43,6 +43,12 @@
           "group": [
             {
               "to": {
+                "path": "/viewer#mock"
+              },
+              "label": "Mock服务端api"
+            },
+            {
+              "to": {
                 "path": "/viewer#file-loader"
               },
               "label": "文件加载器"

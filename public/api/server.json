@@ -45,7 +45,13 @@
               "to": {
                 "path": "/viewer#mock"
               },
-              "label": "Mock服务端api"
+              "label": "mock服务端api"
+            },
+            {
+              "to": {
+                "path": "/viewer#jsdoc"
+              },
+              "label": "jsdoc代码注释"
             },
             {
               "to": {

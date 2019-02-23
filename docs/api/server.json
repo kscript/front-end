@@ -52,6 +52,23 @@
                 "path": "/viewer#file-loader"
               },
               "label": "文件加载器"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "其它辅助",
+      "icon": "el-icon-tickets",
+      "children": [
+        {
+          "label": "工具",
+          "group": [
+            {
+              "to": {
+                "path": "/viewer#hexo-word-cloud"
+              },
+              "label": "Hexo标签云生成器"
             },
             {
               "to": {

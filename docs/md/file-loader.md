@@ -1,12 +1,12 @@
-### ks-file-loader
+## ks-file-loader
 一个文件加载器
 
-#### 安装
+### 安装
 ```npm
   npm i ks-file-loader -D
 ```
 
-#### Api
+### Api
 
 | 属性 | 类型 | 必要性 | 说明 |
 |--|--|--|--|
@@ -19,7 +19,7 @@
 | done | function | - | 处理完毕时的回调. 参数( - ) |
 | loader | function | - | 加载器. 参数( stats: 文件信息 data: 文件内容 next: 处理完成时的回调 ) |
 
-#### 如何使用?
+### 如何使用?
 
 案例: 用 hexo 生成的博客, 在源码中有大量的空行, 使用
 ```js
@@ -73,5 +73,5 @@ fileLoader({
 });
 ```
 
-#### lisence
+### lisence
 MIT

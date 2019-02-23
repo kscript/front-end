@@ -1,29 +1,23 @@
-# tools
+## front-tools
+一个存放前端工具集的静态网站 [在线demo](https://kscript.github.io/front-tools/)  
 
-## Project setup
+### 安装及使用
 ```
-npm install
-```
+  // clone 项目到本地
+  git clone https://github.com/kscript/front-tools.git
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+  // 打开项目所在目录
+  cd front-tools
 
-### Compiles and minifies for production
-```
-npm run build
-```
+  // 安装项目依赖
+  npm i
 
-### Run your tests
-```
-npm run test
-```
+  // 运行项目
+  npm run serve
 
-### Lints and fixes files
-```
-npm run lint
+  // 打包项目
+  npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 注意事项
+  - 项目部署在非根目录时, 需修改 [build](./config/build.js) 和 [runtime](./config/runtime.js) 文件的 publicPath 属性

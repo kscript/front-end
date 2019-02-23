@@ -1,7 +1,8 @@
 
+const config = require('./config')
 module.exports = {
-  publicPath: '/front-tools',
-  outputDir: 'docs',
+  publicPath: config.publicPath,
+  outputDir: config.outputDir,
   productionSourceMap: false,
   lintOnSave: false,
   devServer: {

@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import axios from 'axios'
 import qs from 'qs'
+import config from '../config/runtime'
 
 let $axios = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? '/': '/front-tools',
+  baseURL: config.publicPath,
   timeout: 15000,
   transformRequest: [function (data) {
     return data instanceof FormData ? data : qs.stringify(data)

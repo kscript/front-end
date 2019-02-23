@@ -46,6 +46,12 @@
                 "path": "/viewer#file-loader"
               },
               "label": "文件加载器"
+            },
+            {
+              "to": {
+                "path": "/viewer#npm-module-helper"
+              },
+              "label": "npm模块助手[vs插件]"
             }
           ]
         }

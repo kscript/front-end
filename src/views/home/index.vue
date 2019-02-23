@@ -102,12 +102,21 @@ export default {
         })
       })
       return active
+    },
+    redirect () {
+      if (this.$route.fullPath === '/') {
+        this.$router.push({
+          path: '/viewer',
+          hash: '#start'
+        })
+      }
     }
   },
   mounted () {
     this.getList().then(data => {
       this.list = data.route
       this.defaultActive = this.getActive() || '0'
+      this.redirect()
     })
   }
 }

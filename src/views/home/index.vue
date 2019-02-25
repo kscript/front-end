@@ -17,36 +17,27 @@
         >
           <template v-for="(vo, i1) in list">
           <el-submenu
-          :index="String(i1)"
-          v-if="vo.children"
-          :key="i1">
+           v-if="vo.children"
+           :key="i1"
+           :index="String(i1)">
             <template slot="title">
               <i :class="vo.icon" v-if="vo.icon"></i>
               <span>
                 {{vo.label}}
               </span>
             </template>
-            <template
-            v-for="(v2, i2) in vo.children"
-            >
-            <el-menu-item-group :key="i2">
-              <template slot="title">
-                <span>
-                  {{v2.label}}
-                </span>
-              </template>
+            <el-menu-item-group v-if="vo.children">
               <el-menu-item 
-              v-for="(v3, i3) in v2.group"
-              :key="i3"
-              :route="v3.to.path"
-              :index="i1 + '-' + i2 + '-' + i3"
-              >
-              {{v3.label}}
-              </el-menu-item>
+                v-for="(v2, i2) in vo.children"
+                :key="i2"
+                :route="v2.path"
+                :index="i1 + '-' + i2"
+                >
+                {{v2.label}}
+                </el-menu-item>
             </el-menu-item-group>
-            </template>
           </el-submenu>
-          <el-menu-item :index="String(i1)" v-else :key="i1">
+          <el-menu-item v-else :index="String(i1)" :key="i1">
             <i class="el-icon-menu"></i>
             <span slot="title">{{vo.label}}</span>
           </el-menu-item>
@@ -59,7 +50,7 @@
         <div class="main-view">
           <router-view/>
         </div>
-        <el-footer>
+        <el-footer :style="'padding-left:' + asideW + 'px'">
           Copyright &copy;2019 <a class="link" href="//github.com/kscript" target="_blank">kscript</a> 
         </el-footer>
       </el-main>
@@ -98,12 +89,10 @@ export default {
       let active
       this.list.forEach((vo, i1) => {
         !active && (vo.children || []).forEach((v2, i2) => {
-          !active && (v2.group || []).forEach((v3, i3) => {
-            let info = v3.to.path.split('#')
-            if (!active && info[0] === path && (!info[1] || info[1] === hash)) {
-              active = [i1, i2, i3].join('-')
-            }
-          })
+          let info = v2.path.split('#')
+          if (!active && info[0] === path && (!info[1] || info[1] === hash)) {
+            active = [i1, i2].join('-')
+          }
         })
       })
       return active
@@ -119,7 +108,7 @@ export default {
   },
   mounted () {
     this.getList().then(data => {
-      this.list = data.route
+      this.list = data
       this.defaultActive = this.getActive() || '0'
       this.redirect()
     })

@@ -19,5 +19,4 @@
   npm run build
 ```
 
-### 注意事项
-  - 项目部署在非根目录时, 需修改 [build](./config/build.js) 和 [runtime](./config/runtime.js) 文件的 publicPath 属性
+如果项目部署在非根目录, 那么在打包时, 修改 config/build.js 和 config/runtime.js 文件的 publicPath 属性

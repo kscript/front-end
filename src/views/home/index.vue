@@ -83,6 +83,7 @@ export default {
       maxw: 300,
       isCollapse: false,
       defaultActive: '0',
+      timer: 0,
       list: []
     }
   },
@@ -97,6 +98,12 @@ export default {
   methods: {
     onResizing (left, top, width, height) {
       this.asideW = width
+      if (!this.timer) {
+        this.timer = setTimeout(() => {
+          this.timer = 0
+          this.$store.commit('asideW', this.asideW)
+        }, 150)
+      }
     },
     getList () {
       return this.$store.dispatch('toolList')
@@ -131,6 +138,9 @@ export default {
       }
     }
   },
+  created () {
+    this.asideW = this.$store.getters.asideW
+  },
   mounted () {
     this.getList().then(data => {
       this.list = data
@@ -150,6 +160,7 @@ export default {
 }
 .el-aside{
   .deformation-el{
+    cursor: auto;
     outline: none;
     height: 100%!important;
   }

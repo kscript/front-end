@@ -7,12 +7,30 @@
   - 脚手架使用的是 [vue-cli](//cli.vuejs.org/zh/guide/)
   - UI方面使用的是 [element-ui](//element-cn.eleme.io)
   - 网站的展示使用 [vue-markdown](https://github.com/miaolz123/vue-markdown) 组件
+  
+### 安装及使用
+```
+  // clone 项目到本地
+  git clone https://github.com/kscript/front-end.git
+
+  // 打开项目所在目录
+  cd front-end
+
+  // 安装项目依赖
+  npm i
+
+  // 运行项目
+  npm run serve
+
+  // 打包项目
+  npm run build
+```
+如果项目部署在非根目录, 那么在打包时, 修改 config/build.js 和 config/runtime.js 文件的 publicPath 属性
 
 ## 内容更新
 前面已经多次提到过, 这是一个静态的网站, 所以内容更新的话, 通过修改文件内容就可以了.  
  - 左侧列表的更新, 修改 api/server.json 文件
  - 右侧内容的更新, 在 md 文件夹下新增和修改  
    
-上面 左侧列表以及右侧内容 的更新中, 提到的文件与文件夹的路径,  
-如果你的网站没有部署的话, 那么是在public文件夹; 网站已经部署, 则是在docs文件夹下修改 (建议你同步修改public文件夹, 如果有的话)   
-> **注意**: 重新打包时会移除docs文件夹, 所以, 在你可能会重新部署网站时, 请记得更新public文件夹, 不然会造成内容丢失!!
+上面提到的文件/文件夹的路径, 只有在已经打包部署, 且以后都不再重新打包时, 才在 docs 文件夹修改.  
+否则, 都应该在 public 文件夹进行修改, 这是因为 **重新打包时 会移除docs文件夹**  

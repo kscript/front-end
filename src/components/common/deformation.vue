@@ -128,32 +128,11 @@ export default {
     }
   },
   mounted() {
-    // 初始化控件宽高
-    if (this.minw > this.w) this.width = this.minw
-    if (this.minh > this.h) this.height = this.minh
-    if (this.maxw < this.w) this.width = this.maxw
-    if (this.maxh < this.h) this.height = this.maxh
-    // 判断是否只能在父级元素中拖动
-    if (this.parent) {
-      this.parentW = parseInt(this.$el.parentNode.clientWidth, 10)
-      this.parentH = parseInt(this.$el.parentNode.clientHeight, 10)
-      if (this.w > this.parentW) this.width = this.parentW
-      if (this.h > this.parentH) this.height = this.parentH
-      if (this.x + this.width > this.parentW) this.left = parentW - this.width
-      if (this.y + this.height > this.parentH) this.top = parentH - this.height
-    }
-    // 判断浏览器是否支持passive
-    try {
-      Object.defineProperty({}, "passive", {
-        get: function() {
-          this.passiveSupported = true
-        }
-      })
-    } catch (err) {}
-    this.$emit("resizing", this.left, this.top, this.width, this.height)
+    this.$refs.vdr.click();
   },
   data() {
     return {
+      handleMoved: false,
       init: false,
       top: this.y,
       left: this.x,
@@ -268,9 +247,16 @@ export default {
     handleMove(e) {
       this.mouseX = e.pageX || e.clientX + document.documentElement.scrollLeft
       this.mouseY = e.pageY || e.clientY + document.documentElement.scrollTop
+      // 当刷新页面, 鼠标正好停留在resize控件上时, 将lastMouse的值设置为当前位置
+      if (!this.handleMoved) {
+        this.handleMoved = true
+        this.lastMouseX = this.mouseX
+        this.lastMouseY = this.mouseY
+      }
       // diffX =  当前鼠标位置 - 上次鼠标位置 + ？？
       let diffX = (this.mouseX - this.lastMouseX + this.mouseOffX) / this.zoom
       let diffY = (this.mouseY - this.lastMouseY + this.mouseOffY) / this.zoom
+      
       this.mouseOffX = this.mouseOffY = 0
       this.lastMouseX = this.mouseX
       this.lastMouseY = this.mouseY
@@ -304,7 +290,7 @@ export default {
         if (this.handle.indexOf("r") >= 0) {
           if (this.elmW + dX < this.minw)
             this.mouseOffX = dX - (diffX = this.minw - this.elmW)
-          else if (this.elmX + this.elmW + dX > this.parentW)
+          if (this.elmX + this.elmW + dX > this.parentW)
             this.mouseOffX =
               dX - (diffX = this.parentW - this.elmX - this.elmW)
           this.elmW += diffX
@@ -399,9 +385,6 @@ export default {
         height: h
       }
     }
-  },
-  mounted(){
-    this.$refs.vdr.click();
   }
 }
 /* eslint-enable */

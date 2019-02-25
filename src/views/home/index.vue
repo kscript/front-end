@@ -2,7 +2,20 @@
   <div class="view-home">
     <el-container>
       <el-aside :width="asideW + 'px'">
-        <div class="scroll">
+      <v-deformation
+        class="deformation-el"
+        :x="0"
+        :w="asideW"
+        :draggable="2"
+        :resizable="2"
+        :showHandler="false"
+        :move="true"
+        size="w"
+        axis="x"
+        :minw="minw"
+        :maxw="maxw"
+        @resizing="onResizing">
+        <div class="scroll" style="height: 100%;">
         <el-menu
         class="el-menu-vertical-demo"
         text-color="#555"
@@ -22,7 +35,7 @@
            :index="String(i1)">
             <template slot="title">
               <i :class="vo.icon" v-if="vo.icon"></i>
-              <span>
+              <span class="menu-item-title">
                 {{vo.label}}
               </span>
             </template>
@@ -33,17 +46,20 @@
                 :route="v2.path"
                 :index="i1 + '-' + i2"
                 >
-                {{v2.label}}
+                <span class="menu-item-title">
+                  {{v2.label}}
+                </span>
                 </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-menu-item v-else :index="String(i1)" :key="i1">
             <i class="el-icon-menu"></i>
-            <span slot="title">{{vo.label}}</span>
+            <span slot="title" class="menu-item-title">{{vo.label}}</span>
           </el-menu-item>
           </template>
         </el-menu>
         </div>
+        </v-deformation>
       </el-aside>
       <el-main>
         <!-- <el-header></el-header> -->
@@ -58,10 +74,13 @@
   </div>
 </template>
 <script>
+import deformation from '../../components/common/deformation.vue'
 export default {
   data () {
     return {
       asideW: 240,
+      minw: 160,
+      maxw: 300,
       isCollapse: false,
       defaultActive: '0',
       list: []
@@ -72,7 +91,13 @@ export default {
       this.defaultActive = this.getActive()
     }
   },
+  components: {
+    'v-deformation': deformation
+  },
   methods: {
+    onResizing (left, top, width, height) {
+      this.asideW = width
+    },
     getList () {
       return this.$store.dispatch('toolList')
     },
@@ -124,6 +149,10 @@ export default {
   width: 100%;
 }
 .el-aside{
+  .deformation-el{
+    outline: none;
+    height: 100%!important;
+  }
   .scroll{
     position: fixed;
     top: 0;
@@ -137,6 +166,12 @@ export default {
       border-right: none;
       /deep/ .el-menu-item-group__title{
         display: none;
+      }
+      /deep/ .el-menu-item,
+      /deep/ .menu-item-title{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }

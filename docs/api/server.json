@@ -38,6 +38,16 @@
     ]
   },
   {
+    "label": "Electron",
+    "icon": "el-icon-electron",
+    "children": [
+      {
+        "path": "/viewer#electron-cupture",
+        "label": "electron 截屏"
+      }
+    ]
+  },
+  {
     "label": "其它辅助",
     "icon": "el-icon-tickets",
     "children": [

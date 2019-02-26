@@ -22,6 +22,11 @@ const router = new Router({
           path: '/viewer',
           name: 'viewer',
           component: r => require.ensure( [], () => r (require('./components/pages/viewer.vue'))),
+        },
+        {
+          path: '/border',
+          name: 'border',
+          component: r => require.ensure( [], () => r (require('./components/pages/border.vue'))),
         }
       ]
     }

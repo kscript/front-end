@@ -3,11 +3,11 @@
     <el-container :class="{'show-menu': showMenu}">
       <el-aside :width="asideW + 'px'">
       <span class="menu-button">
-        <el-button type="type" size="mini" @click="showMenu = !showMenu">
+        <el-button type="type" size="mini" @click="showMenu = true">
           <i class="fd-icon" :class="showMenu? 'fd-icon-wuxupailie' : 'fd-icon-zuoduiqi'"></i>
         </el-button>
       </span>
-      <div class="menu-mask"></div>
+      <div class="menu-mask" @click="showMenu = !showMenu"></div>
       <v-deformation
         class="deformation-el"
         :x="0"
@@ -161,7 +161,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .menu-button{
-  display: none;
+  opacity: 0;
 }
 .menu-mask{
   position: fixed;
@@ -179,7 +179,8 @@ export default {
     top: .5rem;
     right: .5rem;
     z-index: 99999;
-    display: inline;
+    opacity: 1;
+    transition: opacity .5s;
   }
   
   .el-aside{
@@ -194,6 +195,10 @@ export default {
     }
   }
   .show-menu {
+    .menu-button{
+      opacity: 0;
+      z-index: -1;
+    }
     .menu-mask{
       width: 100%;
     }

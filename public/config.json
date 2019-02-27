@@ -1,0 +1,7 @@
+{
+  "routes": "../article/api/routes.json",
+  "server": {
+    "path": "../article/md/",
+    "ext": ".md"
+  }
+}

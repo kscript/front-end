@@ -1,33 +1,60 @@
 import axios from '../axios'
+let configDispatch = null;
 export default {
-  toolList({
-    state
-  }){
-    return axios({
-      url: '/api/server.json',
-      method: 'get'
-    }).then(response => {
-      return response.data
-    })
-  },
-  server({
+  config ({
     state,
     commit
-  }, hash){
-    if (state.server[hash]) {
+  }, refresh) {
+    if (!refresh && state.config) {
       return new Promise(resolve => {
-        resolve(state.server[hash])
+        resolve(state.config)
       })
     }
     return axios({
-      url: '/md/' + hash + '.md',
+      url: '/config.json',
       method: 'get'
-    }).then(({ data }) => {
-      commit('server', {
-        hash,
-        data 
+    }).then(response => {
+      commit('config', response.data)
+      return response.data
+    })
+  },
+  routes ({
+    dispatch,
+    state,
+    commit
+  }, refresh) {
+    return (configDispatch = configDispatch || dispatch('config')).then(() => {
+      if (!refresh && state.routes.length) {
+        return state.routes
+      }
+      return axios({
+        url: state.config.routes,
+        method: 'get'
+      }).then(response => {
+        commit('routes', response.data)
+        return response.data
       })
-      return data
+    })
+  },
+  server ({
+    dispatch,
+    state,
+    commit
+  }, hash) {
+    return (configDispatch = configDispatch || dispatch('config')).then(() => {
+      if (state.server[hash]) {
+        return state.server[hash]
+      }
+      return axios({
+        url: state.config.server.path + hash + state.config.server.ext,
+        method: 'get'
+      }).then(({ data }) => {
+        commit('server', {
+          hash,
+          data 
+        })
+        return data
+      })
     })
   }
 }

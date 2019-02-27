@@ -106,7 +106,7 @@ export default {
       }
     },
     getList () {
-      return this.$store.dispatch('toolList')
+      return this.$store.dispatch('routes')
     },
     selectMenu (index, indexPath, { route }) {
       if (route !== '') {

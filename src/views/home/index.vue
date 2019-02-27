@@ -7,6 +7,7 @@
           <i class="fd-icon" :class="showMenu? 'fd-icon-wuxupailie' : 'fd-icon-zuoduiqi'"></i>
         </el-button>
       </span>
+      <div class="menu-mask"></div>
       <v-deformation
         class="deformation-el"
         :x="0"
@@ -162,11 +163,22 @@ export default {
 .menu-button{
   display: none;
 }
+.menu-mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  z-index: 99990;
+  background-color: rgba(0,0,0,.5);
+  transition: width .5s;
+}
 @media screen and (max-width: 767px){
   .menu-button{
     position: fixed;
     top: .5rem;
     right: .5rem;
+    z-index: 99999;
     display: inline;
   }
   
@@ -182,6 +194,9 @@ export default {
     }
   }
   .show-menu {
+    .menu-mask{
+      width: 100%;
+    }
     .scroll{
       left: 0!important;
     }

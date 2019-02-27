@@ -1,7 +1,12 @@
 <template>
   <div class="view-home">
-    <el-container>
+    <el-container :class="{'show-menu': showMenu}">
       <el-aside :width="asideW + 'px'">
+      <span class="menu-button">
+        <el-button type="type" size="mini" @click="showMenu = !showMenu">
+          <i class="fd-icon" :class="showMenu? 'fd-icon-wuxupailie' : 'fd-icon-zuoduiqi'"></i>
+        </el-button>
+      </span>
       <v-deformation
         class="deformation-el"
         :x="0"
@@ -62,7 +67,6 @@
         </v-deformation>
       </el-aside>
       <el-main>
-        <!-- <el-header></el-header> -->
         <div class="main-view">
           <router-view/>
         </div>
@@ -78,6 +82,7 @@ import deformation from '../../components/common/deformation.vue'
 export default {
   data () {
     return {
+      showMenu: false,
       asideW: 240,
       minw: 160,
       maxw: 300,
@@ -110,6 +115,9 @@ export default {
     },
     selectMenu (index, indexPath, { route }) {
       if (route !== '') {
+        if (this.showMenu) {
+          this.showMenu = false
+        }
         this.$router.push({
           path: route
         })
@@ -151,6 +159,37 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.menu-button{
+  display: none;
+}
+@media screen and (max-width: 767px){
+  .menu-button{
+    position: fixed;
+    top: .5rem;
+    right: .5rem;
+    display: inline;
+  }
+  
+  .el-aside{
+    max-width: 80%;
+    width: auto!important;
+    position: absolute;
+    .scroll{
+      left: -100%!important;
+      .el-menu{
+        width: auto!important;
+      }
+    }
+  }
+  .show-menu {
+    .scroll{
+      left: 0!important;
+    }
+  }
+  .el-footer{
+    padding-left: 0!important;
+  }
+}
 .el-container{
   position: absolute;
   top: 0;
@@ -173,6 +212,7 @@ export default {
     overflow: hidden auto;
     border-right: 1px solid #e6e6e6;
     background: #fff;
+    transition: left .5s;
     .el-menu{
       border-right: none;
       /deep/ .el-menu-item-group__title{

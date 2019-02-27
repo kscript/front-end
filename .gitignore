@@ -27,3 +27,5 @@ public/config.local.json
 docs/api
 docs/node_modules
 docs/config.local.json
+
+static/

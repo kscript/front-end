@@ -11,7 +11,8 @@ export default {
       })
     }
     return axios({
-      url: '/config.json',
+      // production
+      url: process.env.NODE_ENV === 'development' ? '/config.local.json' : '/config.json',
       method: 'get'
     }).then(response => {
       commit('config', response.data)

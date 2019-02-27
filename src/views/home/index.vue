@@ -39,7 +39,7 @@
                 {{vo.label}}
               </span>
             </template>
-            <el-menu-item-group v-if="vo.children">
+            <el-menu-item-group>
               <el-menu-item 
                 v-for="(v2, i2) in vo.children"
                 :key="i2"
@@ -52,8 +52,8 @@
                 </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item v-else :index="String(i1)" :key="i1">
-            <i class="el-icon-menu"></i>
+          <el-menu-item v-else :index="String(i1)" :key="i1" :route="vo.path">
+            <i :class="vo.icon" v-if="vo.icon"></i>
             <span slot="title" class="menu-item-title">{{vo.label}}</span>
           </el-menu-item>
           </template>

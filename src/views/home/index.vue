@@ -168,10 +168,12 @@ export default {
   top: 0;
   left: 0;
   bottom: 0;
+  right: 0;
   width: 0;
-  z-index: 99990;
+  z-index: 99999;
+  opacity: 0;
   background-color: rgba(0,0,0,.5);
-  transition: width .5s;
+  transition: opacity .3s;
 }
 @media screen and (max-width: 767px){
   .menu-button{
@@ -200,6 +202,7 @@ export default {
       z-index: -1;
     }
     .menu-mask{
+      opacity: 1;
       width: 100%;
     }
     .scroll{

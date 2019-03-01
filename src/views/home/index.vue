@@ -69,7 +69,37 @@
       </el-aside>
       <el-main>
         <div class="main-view">
-          <router-view/>
+          <router-view />
+        </div>
+        <div class="pagination">
+          <el-row type="flex">
+            <el-col :size="12">
+              <div class="prev-link">
+                <template v-if="prev.path">
+                  上一篇: 
+                  <router-link :to="prev.path">
+                    <el-button type="text">{{prev.label}}</el-button>
+                  </router-link>
+                </template>
+                <div class="empty" v-else>
+                  已经是第一篇啦~~
+                </div>
+              </div>
+            </el-col>
+            <el-col :size="12">
+              <div class="next-link">
+                <template v-if="next.path">
+                  下一篇: 
+                  <router-link :to="next.path" v-if="next.path">
+                    <el-button type="text">{{next.label}}</el-button>
+                  </router-link>
+                </template>
+                <div class="empty" v-else>
+                  已经到底啦~~
+                </div>
+              </div>
+            </el-col>
+          </el-row>
         </div>
         <el-footer :style="'padding-left:' + asideW + 'px'">
           Copyright &copy;2019 <a class="link" href="//github.com/kscript" target="_blank">kscript</a> 
@@ -90,6 +120,8 @@ export default {
       isCollapse: false,
       defaultActive: '0',
       timer: 0,
+      prev: {},
+      next: {},
       list: []
     }
   },
@@ -97,6 +129,8 @@ export default {
     $route(){
       this.defaultActive = this.getActive()
     }
+  },
+  computed: {
   },
   components: {
     'v-deformation': deformation
@@ -127,15 +161,41 @@ export default {
     getActive () {
       let path = this.$route.path
       let hash = this.$route.hash.slice(1)
-      let active
+      let active = ''
+      let prev = {}
+      let next = {}
       this.list.forEach((vo, i1) => {
-        !active && (vo.children || []).forEach((v2, i2) => {
-          let info = v2.path.split('#')
-          if (!active && info[0] === path && (!info[1] || info[1] === hash)) {
-            active = [i1, i2].join('-')
+        if (active && next.path) return 
+        if (!vo.children) {
+          if(active && !next.path) {
+            next = vo
+          } else {
+            let info = vo.path.split('#')
+            if (!active && info[0] === path && (!info[1] || info[1] === hash)) {
+              active = '' + i1
+            }
+            if (!active) {
+              prev = vo
+            }
           }
-        })
+        } else {
+          vo.children.forEach((v2, i2) => {
+            if (active && !next.path) {
+              next = v2
+            } else if (!active || !next.path) {
+              let info = v2.path.split('#')
+              if (!active && info[0] === path && (!info[1] || info[1] === hash)) {
+                active = [i1, i2].join('-')
+              }
+              if(!active){
+                prev = v2
+              }
+            }
+          })
+        }
       })
+      this.prev = prev
+      this.next = next
       return active
     },
     redirect () {
@@ -170,7 +230,7 @@ export default {
   bottom: 0;
   right: 0;
   width: 0;
-  z-index: 99999;
+  z-index: 999;
   opacity: 0;
   background-color: rgba(0,0,0,.5);
   transition: opacity .3s;
@@ -180,7 +240,7 @@ export default {
     position: fixed;
     top: .5rem;
     right: .5rem;
-    z-index: 99999;
+    z-index: 999;
     opacity: 1;
     transition: opacity .5s;
   }
@@ -231,7 +291,7 @@ export default {
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 99999;
+    z-index: 999;
     overflow: hidden auto;
     border-right: 1px solid #e6e6e6;
     background: #fff;
@@ -252,6 +312,16 @@ export default {
 }
 .el-main{
   padding-bottom: 75px;
+  .pagination{
+    padding: 40px 0px;
+    .empty{
+      color: #999;
+      font-size: 14px;
+    }
+  }
+  .next-link{
+    text-align: right;
+  }
   .el-footer{
     position: absolute;
     right: 0;

@@ -37,6 +37,7 @@ export default {
     },
     rendered () {
       this.$nextTick(()=>{
+        window.scrollTo(0, 0)
         Prism.highlightAll()
       })
     }

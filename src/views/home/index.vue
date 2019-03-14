@@ -1,110 +1,123 @@
 <template>
   <div class="view-home">
-    <el-container :class="{'show-menu': showMenu}">
-      <el-aside :width="asideW + 'px'">
-      <span class="menu-button">
-        <el-button type="type" size="mini" @click="showMenu = true">
-          <i class="fd-icon" :class="showMenu? 'fd-icon-wuxupailie' : 'fd-icon-zuoduiqi'"></i>
-        </el-button>
-      </span>
-      <div class="menu-mask" @click="showMenu = !showMenu"></div>
-      <v-deformation
-        class="deformation-el"
-        :x="0"
-        :w="asideW"
-        :draggable="2"
-        :resizable="2"
-        :showHandler="false"
-        :move="true"
-        size="w"
-        axis="x"
-        :minw="minw"
-        :maxw="maxw"
-        @resizing="onResizing">
-        <div class="scroll" style="height: 100%;">
-        <el-menu
-        class="el-menu-vertical-demo"
-        text-color="#555"
-        text-color2="#fff"
-        background-color2="#545c64"
-        active-text-color2="#ffd04b"
-        @select="selectMenu"
-        :collapse="isCollapse"
-        :collapse-transition="false"
-        :default-active="defaultActive"
-        :style="'width: ' + asideW + 'px'"
-        >
-          <template v-for="(vo, i1) in list">
-          <el-submenu
-           v-if="vo.children"
-           :key="i1"
-           :index="String(i1)">
-            <template slot="title">
-              <i :class="vo.icon" v-if="vo.icon"></i>
-              <span class="menu-item-title">
-                {{vo.label}}
-              </span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item 
-                v-for="(v2, i2) in vo.children"
-                :key="i2"
-                :route="v2.path"
-                :index="i1 + '-' + i2"
-                >
+    <el-container class="main-container" :class="{'show-menu': showMenu}">
+      <el-header>
+        <el-row type="flex">
+          <el-col class="layout-left" size="12">
+          </el-col>
+          <el-col class="layout-right" size="12">
+            <a href="/">
+              <i class="fd-icon fd-icon-github"></i>
+            </a>
+          </el-col>
+        </el-row>
+      </el-header>
+      <el-container class="sub-container">
+        <el-aside :width="asideW + 'px'">
+        <span class="menu-button">
+          <el-button type="type" size="mini" @click="showMenu = true">
+            <i class="fd-icon" :class="showMenu? 'fd-icon-wuxupailie' : 'fd-icon-zuoduiqi'"></i>
+          </el-button>
+        </span>
+        <div class="menu-mask" @click="showMenu = !showMenu"></div>
+        <v-deformation
+          class="deformation-el"
+          :x="0"
+          :w="asideW"
+          :draggable="2"
+          :resizable="2"
+          :showHandler="false"
+          :move="true"
+          size="w"
+          axis="x"
+          :minw="minw"
+          :maxw="maxw"
+          @resizing="onResizing">
+          <div class="scroll" style="height: 100%;">
+          <el-menu
+          class="el-menu-vertical-demo"
+          text-color="#555"
+          text-color2="#fff"
+          background-color2="#545c64"
+          active-text-color2="#ffd04b"
+          @select="selectMenu"
+          :collapse="isCollapse"
+          :collapse-transition="false"
+          :default-active="defaultActive"
+          :style="'width: ' + asideW + 'px'"
+          >
+            <template v-for="(vo, i1) in list">
+            <el-submenu
+            v-if="vo.children"
+            :key="i1"
+            :index="String(i1)">
+              <template slot="title">
+                <i :class="vo.icon" v-if="vo.icon"></i>
                 <span class="menu-item-title">
-                  {{v2.label}}
+                  {{vo.label}}
                 </span>
-                </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-menu-item v-else :index="String(i1)" :key="i1" :route="vo.path">
-            <i :class="vo.icon" v-if="vo.icon"></i>
-            <span slot="title" class="menu-item-title">{{vo.label}}</span>
-          </el-menu-item>
-          </template>
-        </el-menu>
-        </div>
-        </v-deformation>
-      </el-aside>
-      <el-main>
-        <div class="main-view">
-          <router-view />
-        </div>
-        <div class="pagination">
-          <el-row type="flex">
-            <el-col :size="12">
-              <div class="prev-link">
-                <template v-if="prev.path">
-                  上一篇: 
-                  <router-link :to="prev.path">
-                    <el-button type="text">{{prev.label}}</el-button>
-                  </router-link>
-                </template>
-                <div class="empty" v-else>
-                  已经是第一篇啦~~
+              </template>
+              <el-menu-item-group>
+                <el-menu-item 
+                  v-for="(v2, i2) in vo.children"
+                  :key="i2"
+                  :route="v2.path"
+                  :index="i1 + '-' + i2"
+                  >
+                  <span class="menu-item-title">
+                    {{v2.label}}
+                  </span>
+                  </el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+            <el-menu-item v-else :index="String(i1)" :key="i1" :route="vo.path">
+              <i :class="vo.icon" v-if="vo.icon"></i>
+              <span slot="title" class="menu-item-title">{{vo.label}}</span>
+            </el-menu-item>
+            </template>
+          </el-menu>
+          </div>
+          </v-deformation>
+        </el-aside>
+        <el-main>
+          <div class="main-view">
+            <router-view />
+          </div>
+          <div class="pagination">
+            <el-row type="flex">
+              <el-col :span="12">
+                <div class="prev-link">
+                  <template v-if="prev.path">
+                    <div class="label">上一篇: </div>
+                    <router-link :to="prev.path">
+                      <el-button type="text">{{prev.label}}</el-button>
+                    </router-link>
+                  </template>
+                  <div class="empty" v-else>
+                    已经是第一篇啦~~
+                  </div>
                 </div>
-              </div>
-            </el-col>
-            <el-col :size="12">
-              <div class="next-link">
-                <template v-if="next.path">
-                  下一篇: 
-                  <router-link :to="next.path" v-if="next.path">
-                    <el-button type="text">{{next.label}}</el-button>
-                  </router-link>
-                </template>
-                <div class="empty" v-else>
-                  已经到底啦~~
+              </el-col>
+              <el-col :span="12">
+                <div class="next-link">
+                  <template v-if="next.path">
+                    <div class="label">下一篇: </div>
+                    <router-link :to="next.path" v-if="next.path">
+                      <el-button type="text">{{next.label}}</el-button>
+                    </router-link>
+                  </template>
+                  <div class="empty" v-else>
+                    已经到底啦~~
+                  </div>
                 </div>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <el-footer :style="'padding-left:' + asideW + 'px'">
-          Copyright &copy;2019 <a class="link" href="//github.com/kscript" target="_blank">kscript</a> 
-        </el-footer>
-      </el-main>
+              </el-col>
+            </el-row>
+          </div>
+          <el-footer :style="'padding-left:' + asideW + 'px'">
+            Copyright &copy;2019 <a class="link" href="//github.com/kscript" target="_blank">kscript</a> 
+          </el-footer>
+        </el-main>
+      </el-container>
     </el-container>
   </div>
 </template>
@@ -220,6 +233,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$height: 60px;
 .menu-button{
   opacity: 0;
 }
@@ -273,12 +287,36 @@ export default {
     padding-left: 0!important;
   }
 }
-.el-container{
+.main-container{
+  .el-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1020;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    height: $height;
+    line-height: $height;
+    .layout-right{
+      text-align: right;
+      a{
+        text-decoration: none;
+      }
+      .fd-icon{
+        color: #666;
+        font-size: 24px;
+      }
+    }
+  }
+}
+.sub-container{
   position: absolute;
-  top: 0;
+  top: $height;
   left: 0;
   min-height: 100%;
   width: 100%;
+  z-index: 1000;
 }
 .el-aside{
   .deformation-el{
@@ -288,7 +326,7 @@ export default {
   }
   .scroll{
     position: fixed;
-    top: 0;
+    top: $height;
     bottom: 0;
     left: 0;
     z-index: 999;
@@ -313,14 +351,24 @@ export default {
 .el-main{
   padding-bottom: 75px;
   .pagination{
-    padding: 40px 0px;
+    padding: 30px 0px;
     .empty{
       color: #999;
       font-size: 14px;
+      line-height: 40px;
     }
-  }
-  .next-link{
-    text-align: right;
+    .label{
+      display: inline;
+    }
+    @media screen and (max-width: 767px){
+      .label{
+        display: block;
+        width: 100%;
+      }
+    }
+    .next-link{
+      text-align: right;
+    }
   }
   .el-footer{
     position: absolute;

@@ -5,10 +5,8 @@ import store from './store'
 import {service} from './axios'
 import elementUI from 'element-ui'
 import {eventBus} from './util/eventBus'
-import 'element-ui/lib/theme-chalk/index.css';
-if(process.env.NODE_ENV){
-  require('../static/css/main.css')
-}
+import 'element-ui/lib/theme-chalk/index.css'
+// require('../static/css/main.css')
 Vue.use(elementUI)
 
 Vue.use(eventBus)

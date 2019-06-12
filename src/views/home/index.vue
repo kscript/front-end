@@ -33,7 +33,7 @@
           :minw="minw"
           :maxw="maxw"
           @resizing="onResizing">
-          <div class="scroll" style="height: 100%;">
+          <div class="scroll">
           <el-menu
           class="el-menu-vertical-demo"
           text-color="#555"
@@ -331,6 +331,7 @@ $height: 60px;
     left: 0;
     z-index: 999;
     overflow: hidden auto;
+    height: auto!important;
     border-right: 1px solid #e6e6e6;
     background: #fff;
     transition: left .5s;

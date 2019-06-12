@@ -1,4 +1,5 @@
 import axios from '../axios'
+import runtime from '../../config/runtime'
 let configDispatch = null;
 export default {
   config ({
@@ -11,8 +12,7 @@ export default {
       })
     }
     return axios({
-      // production
-      url: process.env.NODE_ENV === 'development' ? '/config.local.json' : '/config.json',
+      url: runtime.configPath,
       method: 'get'
     }).then(response => {
       commit('config', response.data)

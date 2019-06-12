@@ -1,0 +1,69 @@
+[
+  {
+    "label": "开始",
+    "icon": "el-icon-star-off",
+    "children": [
+      {
+        "path": "/viewer#start",
+        "label": "使用说明"
+      },
+      {
+        "path": "/viewer#nav",
+        "label": "前端资源导航"
+      }
+    ]
+  },
+  {
+    "label": "CSS",
+    "icon": "el-icon-news",
+    "children": [
+      {
+        "path": "/sprite",
+        "label": "精灵图片生成器"
+      }
+    ]
+  },
+  {
+    "label": "JS",
+    "icon": "el-icon-tickets",
+    "children": [
+      {
+        "path": "/viewer#mock",
+        "label": "mock服务端api"
+      },
+      {
+        "path": "/viewer#jsdoc",
+        "label": "jsdoc代码注释"
+      },
+      {
+        "path": "/viewer#file-loader",
+        "label": "文件加载器"
+      }
+    ]
+  },
+  {
+    "label": "Electron",
+    "icon": "fd-icon fd-icon-electron",
+    "children": [
+      {
+        "path": "/viewer#electron-cupture",
+        "label": "electron 截屏"
+      }
+    ]
+  },
+  {
+    "label": "其它辅助",
+    "icon": "el-icon-tickets",
+    "children": [
+      {
+        "path": "/viewer#hexo-word-cloud",
+        "label": "Hexo标签云生成器"
+      }
+    ]
+  },
+  {
+    "icon": "el-icon-news",
+    "path": "/viewer#npm-module-helper",
+    "label": "npm模块助手[vs插件]"
+  }
+]

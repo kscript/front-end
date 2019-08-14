@@ -6,6 +6,10 @@
       {
         "path": "/viewer#start",
         "label": "使用说明"
+      },
+      {
+        "path": "/viewer#nav",
+        "label": "前端资源导航"
       }
     ]
   },

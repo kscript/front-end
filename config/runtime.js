@@ -8,10 +8,12 @@ export default Object.assign(
   // 各自的一些配置
   {
     development: {
-      publicPath: '/'
+      publicPath: '/',
+      configPath: '/config.local.json',
     },
     production: {
       publicPath: '/front-end',
+      configPath: '/config.json',
     }
   }[process.env.NODE_ENV]
 )

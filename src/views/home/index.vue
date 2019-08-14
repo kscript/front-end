@@ -33,7 +33,7 @@
           :minw="minw"
           :maxw="maxw"
           @resizing="onResizing">
-          <div class="scroll" style="height: 100%;">
+          <div class="scroll" style="height: auto;">
           <el-menu
           class="el-menu-vertical-demo"
           text-color="#555"
